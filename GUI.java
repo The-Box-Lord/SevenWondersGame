@@ -188,9 +188,15 @@ public class GUI extends JPanel implements MouseListener
 		g.drawString(": "+cp.getWins(), 275, 105);
 		g.drawImage(other.get("victoryminus"), 217, 135, 50, 50, null);
 		g.drawString(": "+cp.getLosses(), 275, 165);
+		
+		g.setColor(Color.black);
+		g.fillRoundRect(20, 60, 80, 80, 80, 80);
+		g.drawImage(other.get(cp.getWonder().getResource().toString()), 25, 65, 70, 70, null);
+		
 		//right
 		cp = board.getPlayer(curPlayer+2);
 		wn = cp.getWonder().getName();
+		g.setColor(Color.white);
 		g.setFont(new Font("Papyrus", Font.BOLD, 16));
 		g.drawString(String.format("Player %d", (curPlayer+2)%3+1).toUpperCase(), 755, 170);
 		g.drawString(wn.toUpperCase(), 755, 190);
@@ -202,6 +208,10 @@ public class GUI extends JPanel implements MouseListener
 		g.drawString(": "+cp.getWins(), 1025, 105);
 		g.drawImage(other.get("victoryminus"), 967, 135, 50, 50, null);
 		g.drawString(": "+cp.getLosses(), 1025, 165);
+		
+		g.setColor(Color.black);
+		g.fillRoundRect(770, 60, 80, 80, 80, 80);
+		g.drawImage(other.get(cp.getWonder().getResource().toString()), 775, 65, 70, 70, null);
 		
 
 //		try {
