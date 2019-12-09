@@ -1,33 +1,16 @@
 import java.util.ArrayList;
-/*
-Maybe we should do this for card IDs:
-Age 1 cards 101-151
-Age 2 cards 201-251
-Age 3 cards 301-351
-This way, to get the age we do ID/100
-*/
-public class Card implements Comparable<Card> {
-//	enum, 
-	
-//	instance variables
-//	age integer of 1, 2, or 3
-	private int age, color, coinCost, ID;
+
+public class Card implements Comparable<Card>
+{
+	private int age, color, coinCost;
 	private String name, effect, free, chain1, chain2;
 	private ArrayList<Resource> resourceCost;
-	private boolean inHand;
 	private int order;
+	
 //	&-math, #-literature, @-engineer
 //	integers correspond w/ colors:
 //	[0-brown, 1-gray, 2-blue, 3-green, 4-red, 5-yellow, 6-purple]
 	
-	/* card input order
-	 * age
-	 * color
-	 * name|effect|resourceCost|coinCost|free|chain1|chain2|
-	 * 
-	 */
-	
-//	constructor, creates a card given variables
 	public Card(int age, int color, String name, String effect, String resourceCost, 
 				int coinCost, String free, String chain1, String chain2, int order)
 	{
@@ -38,7 +21,6 @@ public class Card implements Comparable<Card> {
 		this.free = free;
 		this.chain1 = chain1;
 		this.chain2 = chain2;
-		ID = Integer.parseInt(""+age+color+order);
 		this.resourceCost = new ArrayList<>();
 		if (resourceCost.contains("/")) {
 			char[] arr = resourceCost.toCharArray();
@@ -50,17 +32,13 @@ public class Card implements Comparable<Card> {
 		else
 			for (int i = 0; i < resourceCost.length(); i++)
 				this.resourceCost.add(new Resource(resourceCost.charAt(i)));
-		//treat
 		this.effect = effect;
-		inHand = false;
 		order = 0;
 	}
-	public Card(String n)
-	{
+	public Card(String n) {
 		name = n;
 	}
 	
-//	accessors
 	public int getAge() {
 		return age;
 	}
@@ -88,18 +66,18 @@ public class Card implements Comparable<Card> {
 	public String getChain2() {
 		return chain2;
 	}
-	public int getID() {
-		return ID;
-	}
-	public void inHand()
-	{
-		inHand = true;
-	}
-	public void setOrder(int o)
-	{
+	public void setOrder(int o) {
 		order = o;
 	}
-//	toString, returns attributes of card when called
+	public boolean equals(Object o) {
+		Card c = (Card) o;
+		return name.equals(c.name);
+	}
+	public int compareTo(Card c) {
+		if (color == c.color || (color == 0 && c.color == 1) || (color == 1 && c.color == 0))
+			return order - c.order;
+		return color - c.color;
+	}
 	public String toString() {
 		return "age: " + age 
 				+ "| color: " + color 
@@ -111,19 +89,5 @@ public class Card implements Comparable<Card> {
 				+ "| chain1: " + chain1 
 				+ "| chain2: " + chain2
 				+ "| order: " + order;  
-	}
-	public boolean equals(Object o) {
-		Card c = (Card) o;
-		return name.equals(c.name) || ID == c.ID;
-	}
-	public int compareTo(Card c) {
-		if (color == c.color || (color == 0 && c.color == 1) || (color == 1 && c.color == 0))
-//			if (inHand)
-				return order - c.order;
-//			else
-//				return name.compareTo(c.name);
-		return color - c.color;
-//		return name.compareTo(c.name);
-//		return ID - c.ID;
 	}
 }

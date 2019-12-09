@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
-public class Wonder {
-
+public class Wonder
+{
 	private String name;
 	private Resource resource;
 	private ArrayList<Resource>[] cost;
@@ -17,15 +17,13 @@ public class Wonder {
 		this.resource = resource;
 	}
 	
-	public int nextBuild()
-	{
+	public int nextBuild() {
 		int i = 0;
 		while (i < 3 && built[i] != null)
 			i++;
 		return i;
 	}
-	public ArrayList<Resource> hasResource(ArrayList<Resource> resource, int x)
-	{
+	public ArrayList<Resource> hasResource(ArrayList<Resource> resource, int x) {
 		ArrayList<Resource> temp = new ArrayList<>();
 		for (Resource item : cost[x])
 			temp.add(item);
@@ -43,58 +41,31 @@ public class Wonder {
 		}
 		return temp;
 	}
-//	public boolean canBuild(ArrayList<Resource> resource)
-//	{
-//		int x = 0;
-//		while (x < 3 && built[x] != null)
-//			x++;
-////		ArrayList<Resource> temp = new ArrayList<>();
-////		temp.addAll(resource);
-//		char r = cost[x].get(0).getResource().get(0);
-//		int j = 0;
-//		for (int i = 0; i < resource.size(); i++)
-//			if (resource.get(i).contains(r))
-//				j++;
-//		return j >= cost[x].size(); //implement trading*************
-//	}
-	public void build(Card c, int i)
-	{
+	public void build(Card c, int i) {
 		built[i] = c;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public String getEffect(int i) {
 		return effect[i];
 	}
-	public int getPoints()
-	{
-		return 0;
-	}
-	public Resource getResource()
-	{
+	public Resource getResource() {
 		return resource;
 	}
-	public Card[] getBuilt()
-	{
+	public Card[] getBuilt() {
 		return built;
 	}
-	public ArrayList<Resource> getCost(int x)
-	{
+	public ArrayList<Resource> getCost(int x) {
 		return cost[x];
 	}
-	public void use()
-	{
+	public void use() {
 		used = true;
 	}
-	public void resetUse()
-	{
+	public void resetUse() {
 		used = false;
 	}
-	public boolean used()
-	{
+	public boolean used() {
 		return used;
 	}
 }
