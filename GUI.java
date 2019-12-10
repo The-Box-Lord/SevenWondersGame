@@ -61,11 +61,14 @@ public class GUI extends JPanel implements MouseListener
 		addMouseListener(this);
 	}
 	
+	public void paintcomponent(Graphics g) {
+		super.paintComponent(g);
+	/*
 	public void paintComponent(Graphics gr) {
 		super.paintComponent(gr);
 		BufferedImage scr = new BufferedImage(1500, 1000, BufferedImage.TYPE_INT_ARGB);
 		Graphics g = scr.createGraphics();
-		
+	*/	
 		//background wonder boards
 		g.drawImage(wonders.get(board.getPlayer(curPlayer+1).getWonder().getName()), 0, 0, 750, 220, null);
 		g.drawImage(wonders.get(board.getPlayer(curPlayer+2).getWonder().getName()), 750, 0, 750, 220, null);
@@ -262,7 +265,7 @@ public class GUI extends JPanel implements MouseListener
 			g.drawString(String.format("      %s", name), 200, 800);
 		}
 		
-		
+		/*
 		g.dispose();
 		int width = getWidth();
 		int height = getHeight();
@@ -276,6 +279,7 @@ public class GUI extends JPanel implements MouseListener
 			gr.fillRect(0, 0, width, height);
 			gr.drawImage(scr, 0, (int)(height / 2.0 - width * 2 / 6.0), width, (int)(width * 2 / 3.0), null);
 		}
+		*/
 	}
 	
 	public void mouseReleased(MouseEvent e) {
@@ -287,6 +291,7 @@ public class GUI extends JPanel implements MouseListener
 		
 		int x = e.getX();
 		int y = e.getY();
+		/*
 		int width = getWidth();
 		int height = getHeight();
 		if (width >= height * 3 / 2) {
@@ -305,6 +310,7 @@ public class GUI extends JPanel implements MouseListener
 			y -= start;
 			y /= yFactor;
 		}
+		*/
 		
 		//clicks on top of screen to switch board looks, main board it in curPlayer
 		if (0 <= y && y < 200 && 0 <= x && x < 1500) {
